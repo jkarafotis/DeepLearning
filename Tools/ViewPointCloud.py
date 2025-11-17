@@ -1,7 +1,13 @@
 import open3d as o3d
+from pathlib import Path
+'''
+Basic Script to Visualize Point Cloud data for Testing 
+! Assure you are located in the top level of the DeepLearning Repository !
+'''
 
-# 🔹 Replace this with the path to your .off file
-file_path = r"C:\Users\jkarafotis\Desktop\MyDev\Projects\DeepLearning\data\ModelNet40\airplane\train\airplane_0003.off"
+# ✅ Dynamically get the full absolute path to your .off file
+relative_path = Path("data/ModelNet40/airplane/train/airplane_0003.off")
+file_path = relative_path.resolve()
 
 # Load the mesh
 mesh = o3d.io.read_triangle_mesh(file_path)

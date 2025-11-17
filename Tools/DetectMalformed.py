@@ -1,7 +1,13 @@
 from pathlib import Path
+'''
+Simple tool to sort out any bad data in our collection
+! Assure you are located in the top level of the DeepLearning Repository !
+'''
 
-# 🔧 Airplane class folder
-root = Path(r"C:\Users\jkarafotis\Desktop\MyDev\Projects\DeepLearning\data\ModelNet40\airplane")
+# 🔧 Data class folder
+DataPath = r"data\ModelNet40\airplane"
+root = Path(DataPath)
+
 
 def first_meaningful_line(p: Path) -> str | None:
     """Return the first non-empty, non-comment line (stripped), or None."""
@@ -18,12 +24,14 @@ def first_meaningful_line(p: Path) -> str | None:
         print(f"[warn] Failed to read {p}: {e}")
     return None
 
+
 def is_malformed_off_header(line: str) -> bool:
     """True if header looks like 'OFF540 496 0' instead of 'OFF' on its own line."""
     if not line or not line.startswith("OFF"):
         return False
     rest = line[3:].strip()
     return bool(rest)  # if anything follows OFF directly → malformed
+
 
 bad_files = []
 total = 0
